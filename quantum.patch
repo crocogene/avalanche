@@ -1,0 +1,25 @@
+diff -ruN quantum.old/keyboard.h quantum/keyboard.h
+--- quantum.old/keyboard.h	2023-09-19 13:36:42.139530900 +0300
++++ quantum/keyboard.h	2023-09-19 13:37:40.529999800 +0300
+@@ -30,6 +30,8 @@
+ typedef struct {
+     uint8_t col;
+     uint8_t row;
++    bool use_custom_keycode;
++    uint16_t custom_keycode;
+ } keypos_t;
+ 
+ typedef enum keyevent_type_t { TICK_EVENT = 0, KEY_EVENT = 1, ENCODER_CW_EVENT = 2, ENCODER_CCW_EVENT = 3, COMBO_EVENT = 4 } keyevent_type_t;
+diff -ruN quantum.old/keymap_common.c quantum/keymap_common.c
+--- quantum.old/keymap_common.c	2023-09-19 13:36:42.139530900 +0300
++++ quantum/keymap_common.c	2023-09-19 13:38:27.097485600 +0300
+@@ -194,6 +194,9 @@
+ 
+ // translates key to keycode
+ __attribute__((weak)) uint16_t keymap_key_to_keycode(uint8_t layer, keypos_t key) {
++    if (key.use_custom_keycode) {
++        return key.custom_keycode;
++    }
+     if (key.row < MATRIX_ROWS && key.col < MATRIX_COLS) {
+         return keycode_at_keymap_location(layer, key.row, key.col);
+     }

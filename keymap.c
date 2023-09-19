@@ -7,12 +7,11 @@ qmk flash -kb avalanche/v4 -km croco
 */
 
 #include QMK_KEYBOARD_H
-#include "arbitrary_keycode/include.h"
-
 #define CUSTOM_SAFE_RANGE ML_SAFE_RANGE
 
+#include "arbitrary_keycode/include.h"
 #include "lang_shift/include.h"
-
+#include "combo/include.h"
 
 enum tap_dance {
     _TD_ESC_CAPS,
