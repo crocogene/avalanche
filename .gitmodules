@@ -1,0 +1,9 @@
+[submodule "arbitrary_keycode"]
+	path = arbitrary_keycode
+	url = https://github.com/klavarog/arbitrary_keycode.git
+[submodule "lang_shift"]
+	path = lang_shift
+	url = https://github.com/crocogene/lang_shift.git
+[submodule "combo"]
+	path = combo
+	url = https://github.com/klavarog/combo.git
